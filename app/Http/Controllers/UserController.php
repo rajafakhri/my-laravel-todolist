@@ -35,7 +35,7 @@ class UserController extends Controller
         if(empty($user) || empty($password)){
             return response()->view('user.login',[
                 "title" => "Login",
-                "error" => "User or Password is Required"
+                "error" => "User or password is required"
             ]);
         }
         
@@ -47,11 +47,13 @@ class UserController extends Controller
 
         return response()->view("user.login",[
             "title" => "Login",
-            "error" => "User or Password Wrong"
+            "error" => "User or password is wrong"
         ]);
     }
 
-    public function doLogout(){
-
+    public function doLogout(Request $request) : RedirectResponse
+    {
+        $request->session()->forget("user");
+        return redirect("/");
     }
 }

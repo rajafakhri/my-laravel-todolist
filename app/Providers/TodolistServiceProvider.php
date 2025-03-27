@@ -2,22 +2,22 @@
 
 namespace App\Providers;
 
-use App\Services\Impl\UserServiceImpl;
-use App\Services\UserService;
-use Illuminate\Support\ServiceProvider;
+use App\Services\Impl\TodolistServiceImpl;
+use App\Services\TodolistService;
+use Carbon\Laravel\ServiceProvider;
 use Illuminate\Contracts\Support\DeferrableProvider;
 
-class UserServiceProvider extends ServiceProvider implements DeferrableProvider
+class TodolistServiceProvider extends ServiceProvider implements DeferrableProvider
 {
     public array $singletons = [
-        UserService::class => UserServiceImpl::class
+        TodolistService::class => TodolistServiceImpl::class
     ];
 
-    public function provides():array
+    public function provides() : array
     {
-        return [UserService::class];
+        return [TodolistService::class];
     }
-
+    
     /**
      * Register services.
      */
