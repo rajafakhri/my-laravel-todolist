@@ -34,9 +34,5 @@ class UserServiceTest extends TestCase
         self::assertFalse($this->userService->login("raja","Yoga"));
     }
 
-    public function testLoginPage()
-    {
-        $this->get('/login')
-        ->assertSeeText("Login");
-    }
+
 }

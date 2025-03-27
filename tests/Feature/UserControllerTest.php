@@ -2,19 +2,25 @@
 
 namespace Tests\Feature;
 
+use App\Services\UserService;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class UserControllerTest extends TestCase
 {
-    /**
-     * A basic feature test example.
-     */
-    public function test_example(): void
+    public function testLoginPage()
     {
-        $response = $this->get('/');
+        $this->get('/login')
+        ->assertSeeText("Login");
+    }
 
-        $response->assertStatus(200);
+    public function testLoginSuccess()
+    {
+        $this->post('/login',[
+            "user" => "raja",
+            "password"=> "12345"
+        ])->assertRedirect("/")
+            ->assertSessionHas("user","raja");
     }
 }
